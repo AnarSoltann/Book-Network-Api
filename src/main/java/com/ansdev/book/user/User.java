@@ -1,5 +1,7 @@
 package com.ansdev.book.user;
 
+import com.ansdev.book.book.Book;
+import com.ansdev.book.history.BookTransactionHistory;
 import com.ansdev.book.role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,6 +14,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -42,6 +45,11 @@ public class User implements UserDetails, Principal {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    List<BookTransactionHistory> transactionHistories;
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
