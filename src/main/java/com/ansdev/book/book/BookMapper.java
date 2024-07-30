@@ -1,7 +1,7 @@
 package com.ansdev.book.book;
 
+import com.ansdev.book.file.FileUtils;
 import com.ansdev.book.history.BookTransactionHistory;
-import com.ansdev.book.user.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,10 +26,10 @@ public class BookMapper {
                 .isbn(book.getIsbn())
                 .synopsis(book.getSynopsis())
                 .owner(book.getOwner().getFullName())
-                //.cover(book.getBookCover().getBytes())
                 .rate(book.getRate())
                 .shareable(book.isShareable())
                 .archived(book.isArchived())
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 
