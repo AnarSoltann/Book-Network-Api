@@ -38,6 +38,7 @@ import { uploadBookCoverPicture } from '../fn/book/upload-book-cover-picture';
 import { UploadBookCoverPicture$Params } from '../fn/book/upload-book-cover-picture';
 
 
+
 /**
  * Book API
  */
